@@ -4,4 +4,4 @@ This is where we will push all of our code, updates, and basically all of our de
 and do branches so we will know who did who and what happened
 
 We will eventually merge everything together :)
-For now lets just focu son integrating our websites
+For now lets just focus on integrating our websites
