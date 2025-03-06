@@ -99,10 +99,6 @@ nav ul li a {
     color: #e2ecfc;
     font-size: 50px;
 }
-#job-title:hover {
-    background-color: #e2ecfc;
-    color: #2f27ce;
-}
 
 #KimPhoto {
     width: full;
@@ -292,7 +288,8 @@ footer {
 
 .home-cover-buttons a {
     background-color: #2f27ce;
-    width: 200;
+    color: black;
+    width: 220px;
     height: auto;
     padding: 16px 30px;
     font-size: 20px;
@@ -303,8 +300,8 @@ footer {
 }
 
 .home-cover-buttons a:hover {
-    background-color: #dedcff;
-    color: #2f27ce;
+    background-color: black !important;
+    color: blue !important;
 }
 
 .home-about-section {
