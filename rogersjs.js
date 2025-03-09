@@ -114,18 +114,54 @@ function approvePosting(id) {
     }
 }
 
+function applyPageViewer() {
+        var applyPage = document.getElementById("applyPageContainer");
+        applyPage.style.display = "flex";
+}
+
+/* Changing the thing after the submit button
+function submitButtonProcedure() {
+    document.getElementById("applyButton").style.display = "none";
+    document.getElementById("salaryID").style.display = "none";
+    document.getElementById('jobdetails').innerHTML = `
+            <i class="fas fa-times" onclick="closePreview()"></i>
+            <img src="images/circled-checkmark.png" alt="Circled Checkmark">
+            <h3>Thank You!</h3>
+            <div class="company-name">
+                <a>for applying to ${posting.companyName}</a>
+            </div>
+            <p>Your application will be sent to ${posting.companyName} and you should receive a response back from them within the next few days</p>
+            <div class="salary">$${posting.jobPay}/HR</div> 
+            <button class="buttons" id="applyButton" onclick = "applyPageViewer()">
+                Apply
+            </button>
+        `;
+}
+*/
+
 // Function to open the job details modal
 function openJobDetails(jobId) {
     const postings = getPostings();
     const posting = postings.find(post => post.id === jobId);
-
     if (posting) {
-        document.getElementById('job-title').textContent = posting.jobTitle;
-
-
+        document.getElementById('jobdetails').innerHTML = `
+                <i class="fas fa-times" onclick="closePreview()"></i>
+                <img src="${posting.postingThumbnail}" alt="">
+                <h3>${posting.jobTitle}</h3>
+                <div class="company-name">
+                    <a>${posting.companyName}</a>
+                </div>
+                <p>${posting.jobDescription}</p>
+                <div class="salary" id="salaryID">$${posting.jobPay}/HR</div>
+                <button class="buttons" id="applyButton" onclick = "applyPageViewer()">
+                    Apply
+                </button>
+        `;
+        document.getElementById('whole-preview').style.display = 'flex';
+        document.getElementById('jobdetails').classList.add('active');
+        
     }
 }
-
 
 // Function to render approved job postings in the page
 function renderPostingsPage() {
@@ -158,29 +194,46 @@ function renderPostingsPage() {
     });
 }
 
-function openJobDetails(jobId) {
-    const postings = getPostings();
-    const posting = postings.find(post => post.id === jobId);
-    if (posting) {
-        document.getElementById('jobdetails').innerHTML = `
-                <i class="fas fa-times" onclick="closePreview()"></i>
-                <img src="${posting.postingThumbnail}" alt="">
-                <h3>${posting.jobTitle}</h3>
-                <div class="company-name">
-                    <a>${posting.companyName}</a>
-                </div>
-                <p>${posting.jobDescription}</p>
-                <div class="salary">$${posting.jobPay}/HR</div>
-                <div class="buttons">
-                    <a href="#" class="apply-button">Apply</a>
-                </div>
-        `;
-        document.getElementById('whole-preview').style.display = 'flex';
-        document.getElementById('jobdetails').classList.add('active');
-    }
-}
 
 function closePreview() {
+    document.getElementById("applyPageContainer").style.display = "none";
     document.getElementById('whole-preview').style.display = 'none';
     document.getElementById('jobdetails').classList.remove('active');
+    // Reset form fields
+    document.getElementById("form1").reset();
+    document.getElementById("form2").reset();
+    document.getElementById("form3").reset();
+    // Forms reset back to form 1
+    document.getElementById("form1").style.display = "block";
+    document.getElementById("form2").style.display = "none";
+    document.getElementById("form2").style.display = "none";
+    // Turns elements back to orignal colors and no animations
+    var fname = document.getElementById("fname");
+    fname.style.borderColor = "#e2ecfc";
+    fname.style.animationName = "none";
+    var studentId = document.getElementById("student-id");
+    studentId.style.borderColor = "#e2ecfc";
+    studentId.style.animationName = "none";
+    var grade = document.getElementById("grade");
+    grade.style.borderColor = "#e2ecfc"
+    grade.style.animationName = "none";
+
+    var email = document.getElementById("email");
+    email.style.borderColor = "#e2ecfc";
+    email.style.animationName = "none";
+    var phone = document.getElementById("phone");
+    phone.style.borderColor = "#e2ecfc";
+    phone.style.animationName = "none";
+    var streetAdress = document.getElementById("streetAddress");
+    streetAdress.style.borderColor = "#e2ecfc";
+    streetAdress.style.animationName = "none";
+    var city = document.getElementById("city");
+    city.style.borderColor = "#e2ecfc";
+    city.style.animationName = "none";
+    var state = document.getElementById("state");
+    state.style.borderColor = "#e2ecfc";
+    state.style.animationName = "none";
+    var zip = document.getElementById("zip");
+    zip.style.borderColor = "#e2ecfc";
+    zip.style.animationName = "none";
 }
