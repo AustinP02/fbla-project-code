@@ -158,7 +158,7 @@ nav ul li a {
 .jobs-posting-sec div img {
     width: auto;
     height: 150px;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
 .testimonials {
@@ -263,7 +263,7 @@ footer {
 }
 
 .img-box p {
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 5px;
 }
 
@@ -288,7 +288,7 @@ footer {
 
 .home-cover-buttons a {
     background-color: #2f27ce;
-    color: black;
+    color: #e2ecfc;
     width: 220px;
     height: auto;
     padding: 16px 30px;
@@ -299,10 +299,15 @@ footer {
     transition: 0.5s;
 }
 
-.home-cover-buttons a:hover {
-    background-color: black !important;
-    color: blue !important;
+.home-cover-buttons *, .about-text-info * {
+    color: inherit;
 }
+
+.home-cover-buttons a:hover {
+    background-color: #e2ecfc;
+    color: #2f27ce;
+}
+
 
 .home-about-section {
     padding: 5%;
@@ -332,9 +337,14 @@ footer {
     margin-bottom: 25px;
 }
 
+#lastPAbout {
+    margin-bottom: 50px;
+}
+
 .home-about-sec-container img {
     height: auto;
     width: 600px;
+    border-radius: 8px;
 }
 
 .about-text-info a {

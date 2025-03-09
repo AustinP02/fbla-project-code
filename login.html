@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
     <header>
@@ -20,17 +21,15 @@
     </header>
     <section class="login-sec">
         <div class="login-container">
-            <h2>WELCOME!</h2>
-            <div class="login-form">
-                <form id="form1">
-                    <input type="text" id="username" placeholder="Username" required>
-                    <input type="password" id="password" placeholder="Password" required>
-
-                    <div class="btn-box">
-                        <button type="submit" id="submit-btn">Enter</button> 
-                    </div>
-                </form>
-            </div>
+            <form id="form1">
+                <h2>WELCOME!</h2>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <p id="incorrectLabel">Incorrect username or password.</p>
+                <div class="btn-box">
+                    <button type="submit" id="submit-btn">Enter</button> 
+                </div>
+            </form>
         </div>
     </section>
     <footer>
@@ -193,8 +192,10 @@ nav ul li a {
         background-color: #e2ecfc;
         border-radius: 20px;
         width: 400px;
+        display: flex;
         text-align: center;
         align-items: center;
+        justify-content: center;
     }
 
     .login-container h2 {
@@ -202,13 +203,18 @@ nav ul li a {
         text-align: center;
         font-size: 35px;
         margin-bottom: 25px;
+        text-align: center;
     }
 
     .btn-box a {
         color: #030d1b;
     }
+
+    .login-container form {
+        text-align: center;
+    }
     
-    .login-form form input {
+    .login-container form input {
         margin: 10px;
         width: 100%;
         padding: 10px 5px;
@@ -219,13 +225,13 @@ nav ul li a {
         color: #030d1b;
     }
 
-    .login-form form input::placeholder {
+    .login-container form input::placeholder {
         color: #3f79d6;
     }
 
     .btn-box {
         width: 100%;
-        margin: 30px auto;
+        margin: 10px auto;
         text-align: center;
     }
 
@@ -242,6 +248,37 @@ nav ul li a {
         margin-bottom: 30px;
     }
 
+    @keyframes shake {
+        0% {
+            transform: translateX(-10px);
+        }
+
+        25% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(10px);
+        }
+
+        75% {
+            transform: translateX(5px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+
+    .login-container p{
+        color: #990F02;
+        font-size: 15px;
+        margin: 10px;
+        display: none;
+    }
+
+
     .btn-box button:hover {
         background-color: #e2ecfc;
         border: 1px solid #25467a;
@@ -254,11 +291,20 @@ nav ul li a {
         event.preventDefault();
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        if(username == "admin" && password == "admin"){
+        var incorrectLabel = document.getElementById("incorrectLabel");
+        if(username == "admin" && password == "AdminPass"){
             window.location.href = "admin.html";
         } else{
-            alert("Invalid username or password");
+            incorrectLabel.style.display = "block"
+            labelShake();
         }
     });
+
+    function labelShake() {
+        var incorrectLabel = document.getElementById("incorrectLabel");
+        incorrectLabel.style.animation = "none";
+        incorrectLabel.offsetHeight;
+        incorrectLabel.style.animation = "shake 0.25s 2";
+    }
 </script>
 </html>
