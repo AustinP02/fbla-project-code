@@ -56,6 +56,7 @@ function editPosting(id) {
         document.getElementById('company-name').value = posting.companyName;
         document.getElementById('job-location').value = posting.jobLocation;
         document.getElementById('job-pay').value = posting.jobPay;
+        document.getElementById('cte-tag').value = posting.cteTag;
         document.getElementById('description').value = posting.jobDescription;
         document.getElementById('employment-type').value = posting.employmentType;
         document.getElementById('status').value = posting.status;
@@ -72,6 +73,7 @@ function editPosting(id) {
             posting.jobTitle = document.getElementById('job-title').value;
             posting.postingThumbnail = imageholder
             posting.companyName = document.getElementById('company-name').value;
+            posting.cteTag = document.getElementById('cte-tag').value;
             posting.jobLocation = document.getElementById('job-location').value;
             posting.jobPay = document.getElementById('job-pay').value;
             posting.jobDescription = document.getElementById('description').value;  
@@ -119,25 +121,21 @@ function applyPageViewer() {
         applyPage.style.display = "flex";
 }
 
-/* Changing the thing after the submit button
-function submitButtonProcedure() {
-    document.getElementById("applyButton").style.display = "none";
-    document.getElementById("salaryID").style.display = "none";
+
+function submitButtonProcedure(posted) {
+    const postings = getPostings();
+    const posting = postings.find(post => post.id === posted);
     document.getElementById('jobdetails').innerHTML = `
             <i class="fas fa-times" onclick="closePreview()"></i>
-            <img src="images/circled-checkmark.png" alt="Circled Checkmark">
+            <img src="images/circled-checkmark.png" style = 'overflow: hidden;object-fit: scale-down;' alt="Circled Checkmark">
             <h3>Thank You!</h3>
             <div class="company-name">
                 <a>for applying to ${posting.companyName}</a>
             </div>
             <p>Your application will be sent to ${posting.companyName} and you should receive a response back from them within the next few days</p>
-            <div class="salary">$${posting.jobPay}/HR</div> 
-            <button class="buttons" id="applyButton" onclick = "applyPageViewer()">
-                Apply
-            </button>
         `;
 }
-*/
+
 
 // Function to open the job details modal
 function openJobDetails(jobId) {
@@ -159,17 +157,28 @@ function openJobDetails(jobId) {
         `;
         document.getElementById('whole-preview').style.display = 'flex';
         document.getElementById('jobdetails').classList.add('active');
-        
+        document.getElementById('buttonbox').innerHTML = `
+            <button type="button" class="back-btn" id="back2">Back</button>
+            <button type="button" id="submitButton" onclick="submitButtonProcedure(${posting.id})">Submit</button>
+         `
     }
+
+
 }
 
 // Function to render approved job postings in the page
-function renderPostingsPage() {
+function renderPostingsPage(tag) {
     const postings = getPostings();
     const postingsList = document.querySelector('.jobs-container');  // Change here to use the class as it is in your HTML
     postingsList.innerHTML = ''; // Clear current list
-
-    const approvedPostings = postings.filter(post => post.status === 'approved');
+    var filterApproved
+    if (tag == "none") {
+        var filterApproved = postings
+    }
+    else {
+        var filterApproved = postings.filter(posting => posting.cteTag === tag)
+    }
+    const approvedPostings = filterApproved.filter(post => post.status === 'approved');
 
     if (approvedPostings.length === 0) {
         postingsList.innerHTML = "<div>No approved job postings available.</div>";
