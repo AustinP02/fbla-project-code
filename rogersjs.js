@@ -167,18 +167,24 @@ function openJobDetails(jobId) {
 }
 
 // Function to render approved job postings in the page
-function renderPostingsPage(tag) {
+function renderPostingsPage(tag,first,last) {
     const postings = getPostings();
     const postingsList = document.querySelector('.jobs-container');  // Change here to use the class as it is in your HTML
     postingsList.innerHTML = ''; // Clear current list
-    var filterApproved
+    var tagApproved
     if (tag == "none") {
-        var filterApproved = postings
+        tagApproved = postings
     }
     else {
-        var filterApproved = postings.filter(posting => posting.cteTag === tag)
+        tagApproved = postings.filter(posting => posting.cteTag === tag)
     }
-    const approvedPostings = filterApproved.filter(post => post.status === 'approved');
+
+    const firstApprovedPostings = tagApproved.filter(post => post.jobPay >= first);
+
+    const lastApprovedPostings = firstApprovedPostings.filter(post => post.jobPay <= last);
+
+    const approvedPostings = lastApprovedPostings.filter(post => post.status === 'approved');
+
 
     if (approvedPostings.length === 0) {
         postingsList.innerHTML = "<div>No approved job postings available.</div>";
