@@ -10,6 +10,12 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import CORS
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 app = Flask(__name__)
 
 # Function to send the email
