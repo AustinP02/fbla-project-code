@@ -60,6 +60,7 @@ function editPosting(id) {
         document.getElementById('description').value = posting.jobDescription;
         document.getElementById('employment-type').value = posting.employmentType;
         document.getElementById('status').value = posting.status;
+        document.getElementById('pthumbnail').value = ""
 
         // Image preview 
         const previewDiv = document.getElementById("preview");
@@ -70,8 +71,16 @@ function editPosting(id) {
 
         document.getElementById('edit-job-form').onsubmit = function(event) {
             event.preventDefault();
+
             posting.jobTitle = document.getElementById('job-title').value;
-            posting.postingThumbnail = imageholder
+            if (changed) {
+                posting.postingThumbnail = imageholder
+            } else {
+                posting.postingThumbnail = posting.postingThumbnail
+                imageholder = ""
+                
+            }
+            changed = false
             posting.companyName = document.getElementById('company-name').value;
             posting.cteTag = document.getElementById('cte-tag').value;
             posting.jobLocation = document.getElementById('job-location').value;
@@ -101,7 +110,8 @@ function closeModal() {
 
 // Open the modal
 function openModal() {
-    document.getElementById('edit-modal').style.display = 'block';
+    document.getElementById('edit-modal').style.display = 'flex';
+    document.getElementById('admincontent').scrollTo(0, 0);
 }
 
 
