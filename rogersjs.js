@@ -197,7 +197,7 @@ function renderPostingsPage(tag,first,last) {
 
 
     if (approvedPostings.length === 0) {
-        postingsList.innerHTML = "<div>No approved job postings available.</div>";
+        postingsList.innerHTML = "<div>No job postings available or match your filters.</div>";
         return;
     }
 
