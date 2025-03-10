@@ -6,10 +6,39 @@
     <title>Home</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamMenu = document.querySelector('.ham-menu');
+        const offScreenMenu = document.querySelector('.off-screen-menu');
+
+        hamMenu.addEventListener('click', function() {
+            hamMenu.classList.toggle('active');
+            offScreenMenu.classList.toggle('active');
+        });
+    });
+</script>
 <body>
     <header>
         <a href="index.html" id="logo"><img src="images/guaranteed-logo.png" alt="guaranteed-logo"></a>
-        <nav>
+        <div class="hamburger-menu">
+            <div class="off-screen-menu">
+                <ul>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="jobs.html">JOBS</a></li>
+                    <li><a href="employers.html">EMPLOYERS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="login.html" id="loginButton">LOGIN</a></li>
+                </ul>
+            </div>
+            <nav>
+                <div class="ham-menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+            </nav>
+        </div>
+        <nav id="desktop-nav">
             <ul>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="jobs.html">JOBS</a></li>
@@ -48,7 +77,7 @@
             </div>
         </div>
     </section>
-    <h1 id="job-title">PCTVS Students, Get Hired Today!</h1>
+    <h1 id="job-title">PCTVS STUDENTS, GET HIRED TODAY!</h1>
     <section class="jobs-posting-sec">
         <div>
             <img src="images/data-analyst.jpg" alt="data-analyst">
@@ -65,7 +94,7 @@
             </div>
         </div>
         <div>
-            <img src="images/marketing-manager.jpg" alt="Marketing Manager">
+            <img src="images/marketing-manager.jpg" alt="Marketing Manager" id="marketingManagerID">
             <div class="text-box">
                 <h5>Marketing Manager</h5>
                 <p>Paterson, NJ</p>
@@ -82,7 +111,10 @@
     <div id="more-button">
         <a id="more-button" href="jobs.html"><strong>FIND MORE JOBS</strong></a>
     </div>
-    <h1 id="testimonials-title">What do PCTVS Students have to say?</h1>
+    <div class="mobile-more-button">
+        <a href="jobs.html"><strong>FIND MORE JOBS</strong></a>
+    </div>
+    <h1 id="testimonials-title">WHAT DO PCTVS STUDENTS HAVE TO SAY?</h1>
     <section class="testimonials">
         <div>
             <h4>Michael</h4>
