@@ -8,13 +8,23 @@
     <script src="rogersjs.js" defer></script>
     <script defer>
         document.addEventListener("DOMContentLoaded", function() {
-            renderPostingsPage("none");
+            renderPostingsPage("none",0,100);
         })
 
         window.onload = function() {
         var ctefilter = document.getElementById('ctefilter');
+        var firstnum = document.getElementById('firstnum');
+        var lastnum = document.getElementById('lastnum');
+
         ctefilter.onchange = function() {
-            renderPostingsPage(ctefilter.value);
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value));
+        }
+
+        firstnum.onchange = function() {
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value));
+        }
+        lastnum.onchange = function() {
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value));
         }
     }
     </script>
@@ -39,7 +49,7 @@
         margin:0;
     }
     .main-content {
-    flex-grow: 1; /* Push the footer to the bottom if content is short */
+    flex-grow: 1;
 }
 </style>
 <body>
@@ -74,6 +84,15 @@
             </select>
 
         </div>
+        <div class = "filterstack">
+            <label>Sort by Pay</label>
+            <div class = "numformat">
+                <input type="number" value = 0 min="0" max="100" id="firstnum"> <p>To</p> <input type="number" value = 100  min="0" max="100" id="lastnum">
+            </div>
+
+
+
+    </div>
     </div>
     </div>
         <div class="jobs-container">
@@ -428,7 +447,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 30px 8%;
     border-bottom: #9cb1db;
     border: 1px;
     margin-bottom:10px;
@@ -461,7 +480,7 @@ nav ul li {
 
 nav ul li a {
     transition: 0.5s;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 footer {
@@ -538,6 +557,9 @@ footer {
 }
 
 .filter-container .filters {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     width:50%;
     color:black;
     background-color:#25467a;
@@ -554,7 +576,25 @@ footer {
   justify-content: center;
 }
 
-.filter-container .filters select, option {
+.filter-container .numformat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.filter-container .filters #ctefilter, option {
+    background-color: white;
+    color: black; 
+    border: 1px solid #ccc;
+    padding: 8px; 
+    border-radius: 4px;
+    font-size: 1rem; 
+    margin:8px;
+}
+
+.filter-container .filters #ctefilter, option {
     background-color: white;
     color: black; 
     border: 1px solid #ccc;
@@ -779,7 +819,7 @@ footer {
     color: #e2ecfc;
 }
 
-.forms-containment form input {
+.forms-containment form input, #firstnum,#lastnum {
     margin: 10px;
     width: 100%;
     padding: 10px 5px;
@@ -789,6 +829,14 @@ footer {
     background: transparent;
     color: #e2ecfc;
     text-transform: none;
+}
+
+#firstnum,#lastnum {
+    text-align: center;
+}
+
+.filter-container .filters #firstnum, #lastnum {
+    width:50px;
 }
 
 .forms-containment form input::placeholder {
@@ -831,4 +879,5 @@ footer {
 }
 
 </style>
+
 </html>

@@ -3,747 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobs</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <script src="rogersjs.js" defer></script>
-    <script defer>
-        document.addEventListener("DOMContentLoaded", function() {
-            renderPostingsPage("none");
-        })
-
-        window.onload = function() {
-        var ctefilter = document.getElementById('ctefilter');
-        ctefilter.onchange = function() {
-            renderPostingsPage(ctefilter.value);
-        }
+    <title>Employers</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Urbanist:700|Urbanist:400');
+    
+    body {
+      font-family: 'Urbanist';
+      font-weight: 400;
     }
-    </script>
-    <script src="jsjobs.js" defer></script>
-</head>
-<style>
-    #loginButton {
-        text-align: center;
-        border: 2px solid white;
-        border-radius: 20px;
-        padding: 10px 20px;
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Urbanist';
+      font-weight: 700;
+    }
+    
+    html {font-size: 100%;} /* 16px */
+    
+    h1 {font-size: 4.210rem; /* 67.36px */}
+    
+    h2 {font-size: 3.158rem; /* 50.56px */}
+    
+    h3 {font-size: 2.369rem; /* 37.92px */}
+    
+    h4 {font-size: 1.777rem; /* 28.48px */}
+    
+    h5 {font-size: 1.333rem; /* 21.28px */}
+    
+    small {font-size: 0.750rem; /* 12px */}
+    
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        color: #e2ecfc;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    nav li a {
+        font-size: 15px;
+        text-decoration: none;
+    }
+    
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 8%;
+        border-bottom: #9cb1db;
+        border: 1px;
+        margin-bottom:10px;
+        background-color: #3f79d6;
+    }
+    
+    body {
+        background-color: #030d1b;
+        
+    }
+    
+    #logo {
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    #logo img {
+        width: auto;
+        height: 125px;
+    }
+    
+    nav ul {
+        list-style: none;
+    }
+    
+    nav ul li {
+        display: inline-block;
+        padding: 0px 20px;
+    }
+    
+    nav ul li a {
         transition: 0.5s;
+        font-size: 25px;
     }
-
-    #loginButton:hover {
-        background: white;
+    
+    footer {
+        background-color: #25467a;
+        bottom: 0;
+        justify-content: center;
+    }
+    
+    .items {
+        display: flex;
+        padding: 20px;
+        justify-content: space-around;
+    }
+    
+    .socials {
+        display: flex;
+        justify-content: space-around;
+        width: auto;
+        height: 20px;
+    }
+    
+    .socials a img{
+        margin-right: 10px;
+        width: auto;
+        height: 20px;
+    }
+    
+    .navigate {
+        display: flex;
+        color: #050315;
+    }
+    
+    .navigate p {
+        margin-right: 15px;
+    }
+    
+    
+    
+    
+    .general-info {
+        padding: 5% 10%;
+    }
+    
+    .general-info-container {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .information {
+        padding: 5%  60px;
+        background-color: #e2ecfc;
+        color: #030d1b;
+        border-radius: 20px;
+        width: 600px;
+        height: auto;
+    }
+    
+    .information p i {
+        color: #030d1b;
+        font-size: 20px;
+    }
+    
+    .process {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .process h5, .student-benefits h5 {
+        text-align: center;
+        color: #25467a;
+        margin-bottom: 10px;
+        font-size: 25px;
+    }
+    
+    #process-text {
+        margin-bottom: 10px;
+    }
+    
+    .process p, .process ul li {
+        color: #030d1b;
+        font-size: 20px;
+    }
+    
+    .process ul li strong {
+        color: #25467a;
+        font-size: 20px;
+    }
+    
+    
+    .student-benefits ul li {
+        color: #030d1b;
+        font-size: 20px;
+    }
+    
+    
+    
+    .employer-form {
+        background-color: #e2ecfc;
+        padding: 5% 10%;
+        border-radius: 20px;
+    }
+    
+    .employer-form form {
+        margin-bottom: 50px;
+    }
+    
+    .employer-form form h3 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #030d1b;
+    }
+    
+    .employer-form {
+        width: 600px;
+        top: 100px;
+        left: 40px;
+    }
+    
+    
+    .employer-form form input {
+        margin: 10px;
+        width: 100%;
+        padding: 10px 5px;
+        border: 0;
+        border-bottom: 1px solid black;
+        outline: none;
+        background: transparent;
         color: #030d1b;
     }
 
-    html {
-        min-height: 100vh;
-        margin:0;
+    .employer-form form select {
+        margin: 10px;
     }
-    .main-content {
-    flex-grow: 1; /* Push the footer to the bottom if content is short */
-}
-</style>
-<body>
-    <header>
-        <a href="index.html" id="logo"><img src="images/guaranteed-logo.png" alt="guaranteed-logo"></a>
-        <nav>
-            <ul>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="jobs.html">JOBS</a></li>
-                <li><a href="employers.html">EMPLOYERS</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
-                <li><a href="login.html" id="loginButton">LOGIN</a></li>
-            </ul>
-        </nav>
-    </header>
-
-<div class="main-content">
-    <div class="container">
-        <h3 class="title"> Job Openings </h3>
-        <div class = "filter-container">
-        <div class = "filters">
-            <div class = "filterstack">
-                <label>Sort by CTE</label>
-            <select id = "ctefilter" >
-                <option value="none">All CTEs</option>
-                <option value="video production">Video Production</option>
-                <option value="business">Business</option>
-                <option value="computer science">Computer Science</option>
-                <option value="culinary">Culinary</option>
-                <option value="finance">Finance</option>
-                <option value="medical">Medical</option>
-            </select>
-
-        </div>
-    </div>
-    </div>
-        <div class="jobs-container">
-
-
-        </div>
-    </div>
-</div>
-    <div class="jobs-preview" id="whole-preview">
-        <div id="jobdetails" class="preview">
-
-        </div>
-        <div class="apply-page-container" id="applyPageContainer">
-            <button id="exitButton"><i class="fas fa-times"></i></button>
-            <div class="forms-containment">
-                <form id="form1">
-                    <h3>Who are you?</h3>
-                    <input type="text" id="fname" placeholder="Full Name" required><br>
-                    <input type="number" id="student-id" placeholder="Student ID" required>
-                    <input type="number" id="grade" placeholder="Grade" required maxlength="1" min="9" max="12"><br>
-
-                    <div class="btn-box">
-                        <button type="button" class="next-btn" id="next1">Next</button>
-                    </div>
-                </form>
-                
-                <form id="form2">
-                    <h3>Contact Information</h3>
-                    <input type="email" id="email" placeholder="Email" autocapitalize="none" required><br>
-                    <input type="tel" id="phone" placeholder="Phone Number" required><br><br>
-                    <div class="city-address-container">
-                        <input type="text" id="streetAddress" placeholder="Street Address" required>
-                        <input type="text" id="city" placeholder="City" required>
-                    </div>
-                    <div class="state-zip-container">
-                        <input type="text" id="state" placeholder="State" required>
-                        <input type="number" id="zip" placeholder="Zip Code" required>
-                    </div>
-
-                    <div class="btn-box">
-                        <button type="button" class="back-btn" id="back1">Back</button>
-                        <button type="button" class="next-btn" id="next2">Next</button>
-                    </div>
-                </form>
-        
-                <form id="form3">
-                    <h3>Let us get to know you a little bit more!</h3>
-                    <input type="text" id="interests-hobbies" placeholder="What are your interests and hobbies" required="true" autocapitalize="none"><br>
-                    <input type="text" id="aspirations" placeholder="What are your aspirations in the next 5 years" required="true"><br>
-                    <br><p>Please upload your resume</p>
-                    <input type="file" name="resume" id="resume" required="true"><br>
     
-                    <div class="btn-box" id="buttonbox">
-                        <button type="button" class="back-btn" id="back2">Back</button>
-                        <button type="button" id="submitButton" onclick="submitButtonProcedure()">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div> 
-    </div>   
-
-    <footer>
-        <div class="items">
-            <div class="socials">
-                <a href = "https://www.instagram.com/pctvs1/"><img src="images/instaIcon.png" alt="Instagram Icon"></a>
-                <a href="https://www.youtube.com/@passaiccountytechnical-voc6240"><img src="images/youtubeIcon.png" alt="Youtube Icon"></a>
-                <a href="https://www.linkedin.com/school/pctvs/"><img src="images/linkedinIcon.png" alt="LinkedIn Icon"></a>
-            </div>
-            <div class="navigate">
-                <p><a href="about.html">About Us</a></p>
-                <p><a href="privacypolicy.html">Privacy Policy & Terms of Service</a></p>
-                <p><a href="contact.html">Contact</a></p>
-            </div>
-            <div class="copyright">
-                <p>@ 2025 GUARANTEED.</p>
-            </div>
-        </div>
-    </footer>
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var form1 = document.getElementById("form1");
-        var form2 = document.getElementById("form2");
-        var form3 = document.getElementById("form3");
-
-        var next1 = document.getElementById("next1");
-        var next2 = document.getElementById("next2");
-        var back1 = document.getElementById("back1");
-        var back2 = document.getElementById("back2");
-
-        form1.style.display = "block";
-        form2.style.display = "none";
-        form3.style.display = "none";
-
-        next1.onclick = function () {
-            var fname = document.getElementById("fname");
-            var studentId = document.getElementById("student-id");
-            var grade = document.getElementById("grade");
-
-            var passable = true;
-
-            if(fname.value == "") {
-                fname.style.borderColor = "#990F02";
-                fname.style.animationName = "shake";
-                fname.style.animationDuration = "0.25s"
-                fname.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                fname.style.borderColor = "#e2ecfc";
-                fname.style.animationName = "none";
-            }
-
-            if(studentId.value == "") {
-                studentId.style.borderColor = "#990F02";
-                studentId.style.animationName = "shake";
-                studentId.style.animationDuration = "0.25s"
-                studentId.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                studentId.style.borderColor = "#e2ecfc";
-                studentId.style.animationName = "none";
-            }
-
-            if(grade.value == "") {
-                grade.style.borderColor = "#990F02";
-                grade.style.animationName = "shake";
-                grade.style.animationDuration = "0.25s"
-                grade.style.animationIterationCount = "2";
-                passable = false;
-            } else if(grade.value < 9 || grade.value > 12) {
-                grade.style.borderColor = "#990F02";
-                alert("Please enter a grade between 9-12");
-                grade.style.animationName = "shake";
-                grade.style.animationDuration = "0.25s"
-                grade.style.animationIterationCount = "2";
-                return;
-            } else {
-                grade.style.borderColor = "#e2ecfc"
-                grade.style.animationName = "none";
-            }
-
-            if(passable == false) {
-                alert("Please fill out all required fields.");
-                return;
-            }
-
-            form1.style.display = "none";
-            form2.style.display = "block";
-            form2.style.animationName = "slideIn";
-            form2.style.animationDuration = "0.75s";
-        };
-
-        back1.onclick = function () {
-            form1.style.display = "block";
-            form2.style.display = "none";
-            form1.style.animationName = "slideOut";
-            form1.style.animationDuration = "0.75s";
-        };
-
-        next2.onclick = function () {
-            var email = document.getElementById("email");
-            var phone = document.getElementById("phone");
-            var streetAdress = document.getElementById("streetAddress");
-            var city = document.getElementById("city");
-            var state = document.getElementById("state");
-            var zip = document.getElementById("zip");
-
-            var passable = true;
-
-            if(email.value == "") {
-                email.style.borderColor = "#990F02";
-                email.style.animationName = "shake";
-                email.style.animationDuration= "0.25s";
-                email.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                email.style.borderColor = "#e2ecfc";
-                email.style.animationName = "none";
-            }
-
-            if(phone.value == "") {
-                phone.style.borderColor = "#990F02";
-                phone.style.animationName = "shake";
-                phone.style.animationDuration= "0.25s";
-                phone.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                phone.style.borderColor = "#e2ecfc";
-                phone.style.animationName = "none";
-            }
-
-            if(streetAdress.value == "") {
-                streetAdress.style.borderColor = "#990F02";
-                streetAdress.style.animationName = "shake";
-                streetAdress.style.animationDuration= "0.25s";
-                streetAdress.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                streetAdress.style.borderColor = "#e2ecfc";
-                streetAdress.style.animationName = "none";
-            }    
-            
-            if(city.value == "") {
-                city.style.borderColor = "#990F02";
-                city.style.animationName = "shake";
-                city.style.animationDuration= "0.25s";
-                city.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                city.style.borderColor = "#e2ecfc";
-                city.style.animationName = "none";
-            }     
-
-            if(state.value == "") {
-                state.style.borderColor = "#990F02";
-                state.style.animationName = "shake";
-                state.style.animationDuration= "0.25s";
-                state.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                state.style.borderColor = "#e2ecfc";
-                state.style.animationName = "none";
-            }  
-            
-            if(zip.value == "") {
-                zip.style.borderColor = "#990F02";
-                zip.style.animationName = "shake";
-                zip.style.animationDuration= "0.25s";
-                zip.style.animationIterationCount = "2";
-                passable = false;
-            } else {
-                zip.style.borderColor = "#e2ecfc";
-                zip.style.animationName = "none";
-            }   
-
-            if(passable == false) {
-                alert("Please fill out all required fields.");
-                return;
-            }
-
-
-            form2.style.display = "none";
-            form3.style.display = "block";
-            form3.style.animationDuration = "0.75s";
-        };
-
-        back2.onclick = function () {
-            form2.style.display = "block";
-            form3.style.display = "none";
-            form2.style.animationName = "slideOut";
-            form2.style.animationDuration = "0.75s";
-        };
-
-        var formExitButton = document.getElementById("exitButton");
-        var applyPage = document.getElementById("applyPageContainer");
-
-        formExitButton.onclick = function () {
-            applyPage.style.display = "none";
-            // Reset form fields
-            document.getElementById("form1").reset();
-            document.getElementById("form2").reset();
-            document.getElementById("form3").reset();
-            // Forms reset back to form 1
-            document.getElementById("form1").style.display = "block";
-            document.getElementById("form2").style.display = "none";
-            document.getElementById("form2").style.display = "none";
-            // Turns elements back to orignal colors and no animations
-            var fname = document.getElementById("fname");
-            fname.style.borderColor = "#e2ecfc";
-            fname.style.animationName = "none";
-            var studentId = document.getElementById("student-id");
-            studentId.style.borderColor = "#e2ecfc";
-            studentId.style.animationName = "none";
-            var grade = document.getElementById("grade");
-            grade.style.borderColor = "#e2ecfc"
-            grade.style.animationName = "none";
-
-            var email = document.getElementById("email");
-            email.style.borderColor = "#e2ecfc";
-            email.style.animationName = "none";
-            var phone = document.getElementById("phone");
-            phone.style.borderColor = "#e2ecfc";
-            phone.style.animationName = "none";
-            var streetAdress = document.getElementById("streetAddress");
-            streetAdress.style.borderColor = "#e2ecfc";
-            streetAdress.style.animationName = "none";
-            var city = document.getElementById("city");
-            city.style.borderColor = "#e2ecfc";
-            city.style.animationName = "none";
-            var state = document.getElementById("state");
-            state.style.borderColor = "#e2ecfc";
-            state.style.animationName = "none";
-            var zip = document.getElementById("zip");
-            zip.style.borderColor = "#e2ecfc";
-            zip.style.animationName = "none";
-        }
-
-    });
-</script>
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Urbanist:700|Urbanist:400');
-
-body {
-  font-family: 'Urbanist';
-  font-weight: 400;
-  display:flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: 'Urbanist';
-  font-weight: 700;
-}
-
-html {font-size: 100%;} /* 16px */
-
-h1 {font-size: 4.210rem; /* 67.36px */}
-
-h2 {font-size: 3.158rem; /* 50.56px */}
-
-h3 {font-size: 2.369rem; /* 37.92px */}
-
-h4 {font-size: 1.777rem; /* 28.48px */}
-
-h5 {font-size: 1.333rem; /* 21.28px */}
-
-small {font-size: 0.750rem; /* 12px */}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: #e2ecfc;
-    transition: all .2s linear;
-    text-decoration: none;
-    outline: none; border: none;
-    text-transform: capitalize;
-}
-
-html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-nav li a {
-    font-size: 15px;
-    text-decoration: none;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
-    border-bottom: #9cb1db;
-    border: 1px;
-    margin-bottom:10px;
-    background-color: #3f79d6;
-}
-
-body {
-    background-color: #030d1b;
+    .employer-form form input::placeholder {
+        color: #3f79d6;
+    }
     
-}
-
-#logo {
-    cursor: pointer;
-    text-decoration: none;
-}
-
-#logo img {
-    width: auto;
-    height: 125px;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav ul li {
-    display: inline-block;
-    padding: 0px 20px;
-}
-
-nav ul li a {
-    transition: 0.5s;
-    font-size: 20px;
-}
-
-footer {
-    background-color: #25467a;
-    bottom: 0;
-    justify-content: center;
-}
-
-.container {
-    max-width: 1200px;
-    margin:0 auto;
-    padding:3rem 2rem;
-    display:flex;
-    flex-direction: column;
-}
-
-.container .title {
-    color: #ffffff;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.container .jobs-container {
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: space-evenly;
-    row-gap: 2rem;
-    flex: 1;
-}
-
-.container .jobs-container .jobs {
-    text-align:center;
-    padding: 3rem 2rem;
-    background: #25467a;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0, 0.1);
-    outline: .1rem solid #3f79d6;
-    outline-offset: -1.5rem;
-    cursor: pointer;
-    width: 30rem;
-}
-
-.container .jobs-container .jobs:hover {
-    outline: .2rem solid #ffffff;
-    outline-offset: 0;
-}
-
-.container .jobs-container .jobs img {
-    height: 25rem;
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    object-fit: cover;
-}
-
-.container .jobs-container .jobs:hover img {
-    transform: scale(0.9)
-}
-
-.container .jobs-container .jobs h3 {
-    padding: 0.5rem 0;
-    font-size: 2rem;
-    color: #ffffff
-}
-
-.container .jobs-container .jobs .salary {
-    font-size: 2.5rem;
-}
-
-.filter-container {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-
-.filter-container .filters {
-    width:50%;
-    color:black;
-    background-color:#25467a;
-    margin-bottom:3rem;
-    text-align:center;
-    border-radius:10px;
-    padding: 10px;
-
-}
-.filter-container .filterstack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.filter-container .filters select, option {
-    background-color: white;
-    color: black; 
-    border: 1px solid #ccc;
-    padding: 8px; 
-    border-radius: 4px;
-    font-size: 1rem; 
-    margin:8px;
-}
-
-.filter-container .filters label {
-    margin: 8px 8px 2px;
-   font-weight: bold;
-   font-size: 1.4rem;
-}
-
-.filter-container .filters option {
-    background-color: white;
-    color: black; 
-    border: 1px solid #ccc;
-    padding: 8px; 
-    border-radius: 4px;
-    font-size: 1rem; 
-}
-
-.jobs-preview .preview .buttons:hover {
-    cursor:pointer;
-}
-
-.jobs-preview /*.apply-page-container*/ {
-    position:fixed;
-    top:0;
-    left:0;
-    min-height:100vh;
-    width:100%;
-    background: rgba(0,0,0, 0.8);
-    display:none;
-    align-items: center;
-    justify-content:center;
-}
-
-.jobs-preview .preview {
-    display: none;
-    padding: 2rem;
-    text-align:center;
-    background:#25467a;
-    position: relative;
-    margin:2rem;
-    width:40rem;
-}
-
-.jobs-preview .preview.active {
-    display:inline-block;
-}
-
-.jobs-preview .preview img {
-    height: 20rem;
-    width: 70%;
-    overflow: hidden;
-    object-fit: contain;
-}
-
-.jobs-preview .preview .fa-times {
-    position:absolute;
-    top:1rem; right:1.5rem;
-    cursor:pointer;
-    color:#e2ecfc;
-    font-size: 4rem;
-}
-
-.jobs-preview .preview .fa-times:hover {
-    transform: rotate(90deg);
-}
-
-.jobs-preview .preview h3 {
-    padding:.5rem 0;
-    font-size:2.5rem;
-}
-
-.jobs-preview .preview p {
-    line-height: 1.5;
-    padding:1rem 0;
-    font-size:1rem;
-}
-
-.jobs-preview .preview .salary {
-    font-size: 2rem;
-    padding:0.5rem 0;
-}
-
-.jobs-preview .preview .buttons {
-    background-color: #2f27ce;
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 15px;
-    height: auto;
-    padding: 16px 30px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 20px;
-    text-decoration: none;
-    transition: 0.5s;
-    font-family: 'Urbanist';
-}
-
-.items {
-    display: flex;
-    padding: 20px;
-    justify-content: space-around;
-}
-
-.socials {
-    display: flex;
-    justify-content: space-around;
-    width: auto;
-    height: 20px;
-}
-
-.socials a img{
-    margin-right: 10px;
-    width: auto;
-    height: 20px;
-}
-
-.navigate {
-    display: flex;
-    color: #050315;
-}
-
-.navigate p {
-    margin-right: 15px;
-    text-decoration: underline;
-}
-
-#exitButton {
-    position:absolute;
-    top:1rem; right:1.5rem;
-    cursor:pointer;
-    color:#e2ecfc;
-    background-color: transparent;
-    font-size: 3rem;
-    font-weight: bolder;
-}
-
-#exitButton:hover {
-    transform: rotate(90deg);
-}
-
-.apply-page-container {
-    background: #25467a;
-    height: 600px;
-    width: 600px;
-    margin: 2rem;
-    position: relative;
-    border-radius: 8px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: none;
-}
-
-.forms-containment {
-    text-align: center;
-    padding: 16px 20px;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100px);
+    .btn-box {
+        width: 100%;
+        margin: 30px auto;
+        text-align: center;
+    }
+    
+    .btn-box button {
+        width: 110px;
+        height: 35px;
+        margin: 0 10px;
+        background-color: #3f79d6;
+        border-radius: 20px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    .employer-form form select {
+        color: #030d1b;
+        width: 100%;
+        padding: 10px 5px;
+        text-align: center;
+    }
+    
+    .employer-form form select option {
+        color: #030d1b;
+    }
+    
+    .formlabel {
+        margin:10px;
+        font-weight:bold;
+        color:#3f79d6
     }
 
-    to {
-        transform: translateX(0);
-    }
-}
 
-@keyframes slideOut {
-    from {
-        transform: translateX(-100px);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes shake {
+    @keyframes shake { 
     0% {
         transform: translateX(-10px);
     }
@@ -765,70 +280,370 @@ footer {
     }
 }
 
-.forms-containment form {
-    color: #25467a;
-    width: 400px;
-    height: 400px;
-    animation-name: slideIn;
-    animation-duration: 0s;
-}
+    #loginButton {
+            text-align: center;
+            border: 2px solid white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: 0.5s;
+        }
 
-.forms-containment form h3 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #e2ecfc;
-}
+    #loginButton:hover {
+        background: white;
+        color: #030d1b;
+    }
 
-.forms-containment form input {
-    margin: 10px;
-    width: 100%;
-    padding: 10px 5px;
-    border: 0;
-    border-bottom: 2px solid #e2ecfc;
-    outline: none;
-    background: transparent;
-    color: #e2ecfc;
-    text-transform: none;
-}
+    </style>
 
-.forms-containment form input::placeholder {
-    color: rgb(172, 172, 172);
-}
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo"><img src="images/guaranteed-logo.png" alt="guaranteed-logo"></a>
+        <nav>
+            <ul>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="jobs.html">JOBS</a></li>
+                <li><a href="employers.html">EMPLOYERS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="login.html" id="loginButton">LOGIN</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="general-info">
+        <div class="general-info-container">
+            <div class="information">
+                <p><i>Welcome, Employers! This is your hub for posting job opportunities and discovering motivated students from Passaic County Technical-Vocational Schools (PCTVS). Let us help you find the best talent for your business</i></p>
+                <div class="process">
+                    <h5>How It Works</h5>
+                    <p id="process-text">A simple breakdown of how employers can use the platform:</p>
+                    <ul>
+                        <li><strong>Post a Job:</strong> Submit job opportunities by filling out a form with the position's details.</li>
+                        <li><strong>Job Approval:</strong> Our team will review and approve your job posting, ensuring it meets our guidelines.</li>
+                        <li><strong>Connect with Students:</strong> Once approved, your job will be displayed on the student-facing job board, and you'll begin receiving applications from interested students.</li>
+                    </ul>
+                </div>
+                <div class="student-benefits">
+                    <h5>Benefits of working with PCTVS students!</h5>
+                    <ul>
+                        <li>Access to motivated and skilled students from a variety of vocational programs.</li>
+                        <li>Ability to provide real-world experience to students while benefiting from fresh perspectives and energy.</li>
+                        <li>Direct engagement with the next generation of professionals in tech, engineering, business, and more.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="employer-form">
+                <form id="form1">
+                    <h3>SUBMIT A POSTING!</h3>
+                    <input type="text" id="cname" placeholder="Company Name"><br>
+                    <input type="text" id="cdescription" placeholder="Company Description" ><br>
+                    <input type="text" id="clocation" placeholder="Company Location" ><br>
+                    <span style="margin:10px;"><div class = "formlabel" style="margin:0px 10px 0px;">Choose Thumbnail</div><input type="file" id="pthumbnail" placeholder="Posting Thumbnail" accept="image/*" >    <div id="previewtext" style="color:black;display:none;">Preview:</div><br><div id="preview" style="color:black"></div>
+                    </span><br>
+
+                    <!--
+                    <div class="btn-box">
+                        <button id="Next1" type="button">Next</button>
+                    </div>
+                    -->
+
+                <div style="height:8vh;"></div>
+                    <h3>JOB DESCRIPTION</h3>
+                    <input type="text" id="jtitle" placeholder="Job Title" ><br>
+                    <input type="text" id="jlocation" placeholder="Job Location" ><br>
+                    <input type="text" id="jdescription" placeholder="Job Description" ><br>
+                    <div class = "formlabel">Choose Job Type</div>
+                    <select id="jtype" name="Job Type">
+                        <option value="internship">Internship</option>
+                        <option value="contract">Contract</option>
+                        <option value="part-time">Part-time</option>
+                    </select>
+
+                    <div class = "formlabel">Choose CTE Tag</div>
+                    <select id = "ctetag" >
+                        <option value="video production">Video Production</option>
+                        <option value="business">Business</option>
+                        <option value="computer science">Computer Science</option>
+                        <option value="culinary">Culinary</option>
+                        <option value="finance">Finance</option>
+                        <option value="medical">Medical</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="number" id="jpay" placeholder="Job Pay (Hourly)" ><br>
+
+                    <!--
+                    <div class="btn-box">
+                        <button id="Back1" type="button">Back</button>
+                        <button id="Next2" type="button">Next</button>
+                    </div>
+                -->
+
+                <div style="height:8vh;"></div>
+
+                    <h3>Contact</h3>
+                    <input type="email" id="jemail" placeholder="Company Email" ><br>
+                    <input type="tel" id="jphone" placeholder="Company Phone" ><br>
+                    <input type="tel" id="jfax" placeholder="Company Fax"><br>
+
+                    <div class="btn-box">
+                        <button id="submit" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="items">
+            <div class="socials">
+                <a href = "https://www.instagram.com/pctvs1/"><img src="images/instaIcon.png" alt="Instagram Icon"></a>
+                <a href="https://www.youtube.com/@passaiccountytechnical-voc6240"><img src="images/youtubeIcon.png" alt="Youtube Icon"></a>
+                <a href="https://www.linkedin.com/school/pctvs/"><img src="images/linkedinIcon.png" alt="LinkedIn Icon"></a>
+            </div>
+            <div class="navigate">
+                <p><a href="about.html">About Us</a></p>
+                <p><a href="privacypolicy.html">Privacy Policy & Terms of Service</a></p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+            <div class="copyright">
+                <p>@ 2025 GUARANTEED.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    // Event handler which waits for form submission to create a new job posting to be approved 
+    var imageholder
+    document.getElementById('form1').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const companyName = document.getElementById('cname').value;
+        const companyDescription = document.getElementById('cdescription').value;
+        const companyLocation = document.getElementById('clocation').value;
+        const jobTitle = document.getElementById('jtitle').value;
+        const jobLocation = document.getElementById('jlocation').value;
+        const jobDescription = document.getElementById('jdescription').value;
+        const jobPhone = document.getElementById('jphone').value;
+        const jobEmail = document.getElementById('jemail').value;
+        const jobFax = document.getElementById('jfax').value;
+        const jobPay = document.getElementById('jpay').value;
+        const cteTag = document.getElementById('ctetag').value;
+        const postingThumbnail= imageholder
+        const employmentType = document.getElementById('jtype').value;
+
+        const newPosting = {
+            id: Date.now(),
+            postingThumbnail,
+            companyName,
+            companyDescription,
+            companyLocation,
+            jobTitle,
+            jobLocation,
+            jobDescription,
+            jobPhone,
+            jobEmail,
+            jobFax,
+            jobPay,
+            cteTag,
+            employmentType,
+            status: 'pending', // Default job posting status
+        };
+
+                var cname = {fieldid:document.getElementById("cname"),priority:false};
+                var jdescription = {fieldid:document.getElementById('jdescription'),priority:false};
+                var cdescription = {fieldid:document.getElementById("cdescription"),priority:false};
+                var clocation = {fieldid:document.getElementById("clocation"),priority:false};
+                var pthumbnail = {fieldid:document.getElementById("pthumbnail"),priority:false};
+                var jtitle = {fieldid:document.getElementById("jtitle"),priority:false};
+                var jlocation = {fieldid:document.getElementById("jlocation"),priority:false};
+                var jpay = {fieldid:document.getElementById("jpay"),priority:false};
+                var jemail = {fieldid:document.getElementById("jemail"),priority:false};
+                var jphone = {fieldid:document.getElementById("jphone"),priority:false};
+
+            const fields = [
+                cname,
+                jdescription,
+                cdescription,
+                clocation,
+                pthumbnail,
+                jtitle,
+                jlocation,
+                jpay,
+                jemail,
+                jphone,
+        ]
+
+            var passable = true;
+
+            if(cname.fieldid.value == "") {
+                cname.priority = true
+                cname.fieldid.style.animationDelay = "0.5s";
+                cname.fieldid.style.borderColor = "#990F02";
+                cname.fieldid.style.animationName = '';
+                cname.fieldid.offsetHeight; 
+                cname.fieldid.style.animationName = "shake";
+                cname.fieldid.style.animationDuration = "0.25s"
+                cname.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (jdescription.fieldid.value == "") {
+                jdescription.priority = true
+                jdescription.fieldid.style.animationDelay = "0.5s";
+                jdescription.fieldid.style.borderColor = "#990F02";
+                jdescription.fieldid.style.animationName = '';
+                jdescription.fieldid.offsetHeight; 
+                jdescription.fieldid.style.animationName = "shake";
+                jdescription.fieldid.style.animationDuration = "0.25s"
+                jdescription.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (cdescription.fieldid.value == "") {
+                cdescription.priority = true
+                cdescription.fieldid.style.animationDelay = "0.5s";
+                cdescription.fieldid.style.animationName = '';
+                cdescription.fieldid.offsetHeight; 
+                cdescription.fieldid.style.borderColor = "#990F02";
+                cdescription.fieldid.style.animationName = "shake";
+                cdescription.fieldid.style.animationDuration = "0.25s"
+                cdescription.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (clocation.fieldid.value == "") {
+                clocation.priority = true
+                clocation.fieldid.style.animationDelay = "0.5s";
+                clocation.fieldid.style.borderColor = "#990F02";
+                clocation.fieldid.style.animationName = '';
+                clocation.fieldid.offsetHeight; 
+                clocation.fieldid.style.animationName = "shake";
+                clocation.fieldid.style.animationDuration = "0.25s"
+                clocation.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (pthumbnail.fieldid.value == "") {
+                pthumbnail.priority = true
+                pthumbnail.fieldid.style.animationDelay = "0.5s";
+                pthumbnail.fieldid.style.borderColor = "#990F02";
+                pthumbnail.fieldid.style.animationName = '';
+                pthumbnail.fieldid.offsetHeight; 
+                pthumbnail.fieldid.style.animationName = "shake";
+                pthumbnail.fieldid.style.animationDuration = "0.25s"
+                pthumbnail.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (jtitle.fieldid.value == "") {
+                jtitle.priority = true
+                jtitle.fieldid.style.animationDelay = "0.5s";
+                jtitle.fieldid.style.borderColor = "#990F02";
+                jtitle.fieldid.style.animationName = '';
+                jtitle.fieldid.offsetHeight; 
+                jtitle.fieldid.style.animationName = "shake";
+                jtitle.fieldid.style.animationDuration = "0.25s"
+                jtitle.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (jlocation.fieldid.value == "") {
+                jlocation.priority = true
+                jlocation.fieldid.style.animationDelay = "0.5s";
+                jlocation.fieldid.style.borderColor = "#990F02";
+                jlocation.fieldid.style.animationName = '';
+                jlocation.fieldid.offsetHeight; 
+                jlocation.fieldid.style.animationName = "shake";
+                jlocation.fieldid.style.animationDuration = "0.25s"
+                jlocation.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (jpay.fieldid.value == "") {
+                jpay.priority = true
+                jpay.fieldid.style.animationDelay = "0.5s";
+                jpay.fieldid.style.borderColor = "#990F02";
+                jpay.fieldid.style.animationName = '';
+                jpay.fieldid.offsetHeight; 
+                jpay.fieldid.style.animationName = "shake";
+                jpay.fieldid.style.animationDuration = "0.25s"
+                jpay.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (jemail.fieldid.value == "") {
+                jemail.priority = true
+                jemail.fieldid.style.animationDelay = "0.5s";
+                jemail.fieldid.style.borderColor = "#990F02";
+                jemail.fieldid.style.animationName = '';
+                jemail.fieldid.offsetHeight; 
+                jemail.fieldid.style.animationName = "shake";
+                jemail.fieldid.style.animationDuration = "0.25s"
+                jemail.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            } if (jphone.fieldid.value == "") {
+                jphone.priority = true
+                jphone.fieldid.style.animationDelay = "0.5s";
+                jphone.fieldid.style.borderColor = "#990F02";
+                jphone.fieldid.style.animationName = '';
+                jphone.fieldid.offsetHeight; 
+                jphone.fieldid.style.animationName = "shake";
+                jphone.fieldid.style.animationDuration = "0.25s"
+                jphone.fieldid.style.animationIterationCount = "2";
+                passable = false;
+            }
+
+            var fieldcheck = true;
+            fields.every(field => {
+                if (field.priority == false) {
+                    fieldcheck = false;
+                    return true
+                }
+            });
+
+            var firstInvalidField = fields.find(field => field.priority === true);
+            if (firstInvalidField) {
+                firstInvalidField.fieldid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
 
 
-.city-address-container, .state-zip-container {
-    display: flex;
-    gap: 10px; 
-}
 
-.city-address-container input, .state-zip-container input {
-    flex: 1;
-}
+            if (passable) {
+                const postings = JSON.parse(localStorage.getItem('jPostings')) || [];
+                postings.push(newPosting);
+                localStorage.setItem('jPostings', JSON.stringify(postings));
 
-.btn-box {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
+                // Reset form and preview
+                document.getElementById("previewtext").style.display = "none";
+                const previewDiv2 = document.getElementById("preview");
+                previewDiv2.innerHTML = "";  // Clear previous image preview
+                fields.forEach(field => {
+                    field.fieldid.style.borderColor = "black";
+                });
 
-.btn-box button {
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 5px;
-    background: #3f79d6;
-    color: #ffffff;
-    cursor: pointer;
-}
+                document.getElementById("form1").reset();  // Reset form fields
+            } 
+            else {
+                var firstInvalidField = fields.find(field => field.priority === true);
+                if (firstInvalidField) {
+                    firstInvalidField.fieldid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                alert("Please fill out all required fields.");
+            }
+    });
 
-#form2 {
-    left: 450px;
-    display: none;
-}
 
-#form3 {
-    left: 450px;
-    display: none;
-}
 
-</style>
+    document.getElementById("pthumbnail").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    const previewDiv = document.getElementById("preview");
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;  // Set the image src to the data URL
+            imageholder = e.target.result;
+            img.style.maxWidth = "300px";  // Limit the preview size
+            img.style.maxHeight = "300px";
+            previewDiv.innerHTML = "";  // Clear previous preview
+            document.getElementById("previewtext").style.display = "block"
+            previewDiv.appendChild(img);  // Show the image preview
+
+        };
+
+        reader.readAsDataURL(file);  // Convert the image to a data URL
+    } else {
+        previewDiv.innerHTML = "<p>No image selected</p>";
+    }
+    
+});
+
+</script>
+
+
 </html>

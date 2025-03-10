@@ -60,6 +60,7 @@ function editPosting(id) {
         document.getElementById('description').value = posting.jobDescription;
         document.getElementById('employment-type').value = posting.employmentType;
         document.getElementById('status').value = posting.status;
+        document.getElementById('pthumbnail').value = ""
 
         // Image preview 
         const previewDiv = document.getElementById("preview");
@@ -70,8 +71,16 @@ function editPosting(id) {
 
         document.getElementById('edit-job-form').onsubmit = function(event) {
             event.preventDefault();
+
             posting.jobTitle = document.getElementById('job-title').value;
-            posting.postingThumbnail = imageholder
+            if (changed) {
+                posting.postingThumbnail = imageholder
+            } else {
+                posting.postingThumbnail = posting.postingThumbnail
+                imageholder = ""
+                
+            }
+            changed = false
             posting.companyName = document.getElementById('company-name').value;
             posting.cteTag = document.getElementById('cte-tag').value;
             posting.jobLocation = document.getElementById('job-location').value;
@@ -101,7 +110,8 @@ function closeModal() {
 
 // Open the modal
 function openModal() {
-    document.getElementById('edit-modal').style.display = 'block';
+    document.getElementById('edit-modal').style.display = 'flex';
+    document.getElementById('admincontent').scrollTo(0, 0);
 }
 
 
@@ -167,21 +177,27 @@ function openJobDetails(jobId) {
 }
 
 // Function to render approved job postings in the page
-function renderPostingsPage(tag) {
+function renderPostingsPage(tag,first,last) {
     const postings = getPostings();
     const postingsList = document.querySelector('.jobs-container');  // Change here to use the class as it is in your HTML
     postingsList.innerHTML = ''; // Clear current list
-    var filterApproved
+    var tagApproved
     if (tag == "none") {
-        var filterApproved = postings
+        tagApproved = postings
     }
     else {
-        var filterApproved = postings.filter(posting => posting.cteTag === tag)
+        tagApproved = postings.filter(posting => posting.cteTag === tag)
     }
-    const approvedPostings = filterApproved.filter(post => post.status === 'approved');
+
+    const firstApprovedPostings = tagApproved.filter(post => post.jobPay >= first);
+
+    const lastApprovedPostings = firstApprovedPostings.filter(post => post.jobPay <= last);
+
+    const approvedPostings = lastApprovedPostings.filter(post => post.status === 'approved');
+
 
     if (approvedPostings.length === 0) {
-        postingsList.innerHTML = "<div>No approved job postings available.</div>";
+        postingsList.innerHTML = "<div>No job postings available or match your filters.</div>";
         return;
     }
 
