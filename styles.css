@@ -44,7 +44,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 30px 8%;
     border-bottom: #9cb1db;
     border: 1px;
     margin-bottom:10px;
@@ -76,8 +76,7 @@ nav ul li {
 }
 
 nav ul li a {
-    transition: 0.5s;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 #loginButton {
@@ -85,7 +84,6 @@ nav ul li a {
     border: 2px solid white;
     border-radius: 20px;
     padding: 10px 20px;
-    transition: 0.5s;
 }
 
 #loginButton:hover {
