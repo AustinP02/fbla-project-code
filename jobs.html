@@ -8,24 +8,28 @@
     <script src="rogersjs.js" defer></script>
     <script defer>
         document.addEventListener("DOMContentLoaded", function() {
-            renderPostingsPage("none",0,100);
+            renderPostingsPage("none",0,100,"none");
         })
 
         window.onload = function() {
         var ctefilter = document.getElementById('ctefilter');
         var firstnum = document.getElementById('firstnum');
         var lastnum = document.getElementById('lastnum');
+        var jobfilter = document.getElementById('jobfilter');
 
         ctefilter.onchange = function() {
-            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value));
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value),jobfilter.value);
         }
-
         firstnum.onchange = function() {
-            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value));
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value),jobfilter.value);
         }
         lastnum.onchange = function() {
-            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value));
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value),jobfilter.value);
         }
+        jobfilter.onchange = function() {
+            renderPostingsPage(ctefilter.value,parseInt(firstnum.value),parseInt(lastnum.value),jobfilter.value);
+        }
+        
     }
     </script>
     <script src="jsjobs.js" defer></script>
@@ -84,15 +88,25 @@
             </select>
 
         </div>
+
         <div class = "filterstack">
             <label>Sort by Pay</label>
             <div class = "numformat">
                 <input type="number" value = 0 min="0" max="100" id="firstnum"> <p>To</p> <input type="number" value = 100  min="0" max="100" id="lastnum">
             </div>
 
-
-
     </div>
+
+    <div class = "filterstack">
+        <label>Sort by Job Type</label>
+        <select id = "jobfilter">
+            <option value="none">All Job Types</option>
+            <option value="internship">Internship</option>
+            <option value="contract">Contract</option>
+            <option value="part-time">Part-time</option>
+        </select>
+</div>        
+
     </div>
     </div>
         <div class="jobs-container">
@@ -560,7 +574,8 @@ footer {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width:50%;
+    min-width:50%;
+    width:auto;
     color:black;
     background-color:#25467a;
     margin-bottom:3rem;
@@ -594,7 +609,7 @@ footer {
     margin:8px;
 }
 
-.filter-container .filters #ctefilter, option {
+.filter-container .filters #jobfilter, option {
     background-color: white;
     color: black; 
     border: 1px solid #ccc;
