@@ -84,6 +84,7 @@ nav ul li a {
     border: 2px solid white;
     border-radius: 20px;
     padding: 10px 20px;
+    transition: 0.5s ease-in-out;
 }
 
 #loginButton:hover {
@@ -579,10 +580,10 @@ footer {
         width: 275px;
     }
     
-    #marketingManagerID {
+    /* #marketingManagerID {
         width: 200px;
         height: auto;
-    }
+    } */
 
     .mobile-more-button {
         display: flex;
@@ -621,8 +622,55 @@ footer {
     }
 }
 
-@media only screen and (max-width: 1195px) {
-    * {
-        color: gold;
+@media only screen and (max-width: 1195px) and (min-width: 1190px) {
+
+    /* Header and footer */
+    #logo img {
+        height: 100px;
+    }
+
+    nav ul li {
+        padding: 0px 10px;
+    }
+
+    nav ul li a {
+        font-size: 23px;
+    }
+
+    #KimPhoto {
+        height: 450px;
+    }
+
+    .navigate {
+        margin-left: 10px;
+    }
+    
+     /* Header and footer */
+
+
+    .img-box {
+        margin-left: 40px;
+    }
+
+    .about-text-info {
+        margin-left: 50px;
+        text-align: center;
+    }
+
+    .about-text-info p {
+        text-align: left;
+    }
+
+    .jobs-posting-sec div {
+        width: 250px;
+        text-align: center;
+    }
+
+    .jobs-posting-sec div img {
+        height: 125px;
+    }
+
+    .jobs-posting-sec div div {
+        width: 200px;
     }
 }
