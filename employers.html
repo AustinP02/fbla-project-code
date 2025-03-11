@@ -293,6 +293,26 @@
         color: #030d1b;
     }
 
+    .student-images {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .student-images h2 {
+        color: #25467a;
+        font-size: 40px;
+    }
+
+    .student-images img {
+        width: 400px;
+        height: auto;
+        margin-top: 30px;
+        border-radius: 8px;
+    }
+
     .hamburger-menu {
         display: none;
     }
@@ -442,6 +462,37 @@
         font-size: 15px;
     }
 
+    .process ul li, .student-benefits ul li {
+        margin-top: 20px;
+    }
+
+    .student-images h2 {
+        font-size: 40px;
+    }
+
+    .student-images img {
+        width: 250px;
+        height: auto;
+    }
+
+    .employer-form {
+        width: 300px;
+        margin-top: 40px;
+    }
+
+    .employer-form form {
+        text-align: center;
+    }
+
+    .employer-form form input {
+        margin-bottom: 10px;
+    }
+
+    #previewimg {
+        max-width: 100px;
+        border-radius: 20px;
+    }
+
 }
 
 </style>
@@ -463,6 +514,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="hamburger-menu">
             <div class="off-screen-menu">
                 <ul>
+                    <li><a href="index.html">HOME</a></li>
                     <li><a href="about.html">ABOUT</a></li>
                     <li><a href="jobs.html">JOBS</a></li>
                     <li><a href="employers.html">EMPLOYERS</a></li>
@@ -480,7 +532,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <nav id="desktop-nav">
             <ul>
-                <li><a href="index.html">HOME</a></li>
                 <li><a href="about.html">ABOUT</a></li>
                 <li><a href="jobs.html">JOBS</a></li>
                 <li><a href="employers.html">EMPLOYERS</a></li>
@@ -510,7 +561,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li>Direct engagement with the next generation of professionals in tech, engineering, business, and more.</li>
                     </ul>
                 </div>
-
+                <div class="student-images">
+                    <h2>Our Students hard at work!</h2>
+                    <img src="images/employers-image.png" alt="PCTVS Students at St. Josephs">
+                    <img src="images/employers-image-2.png" alt="PCTVS Students at work">
+                </div>
             </div>
             <div class="employer-form">
                 <form id="form1">
@@ -807,6 +862,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         reader.onload = function(e) {
             const img = document.createElement("img");
+            img.setAttribute("id","previewimg")
             img.src = e.target.result;  // Set the image src to the data URL
             imageholder = e.target.result;
             img.style.maxWidth = "300px";  // Limit the preview size
