@@ -622,7 +622,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 1500px) and (min-width: 400px) {
+@media only screen and (max-width: 2400px) and (min-width: 400px) {
 
     /* Header and footer */
     #logo img {
