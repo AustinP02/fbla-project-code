@@ -279,7 +279,7 @@
 
     // Function to send email data to the Python API
     async function sendEmail() {
-        var emailBody1 = "You have a new applicant:\nName: " + document.getElementById("fname").value + "\nStudent ID: " + document.getElementById("student-id").value +"\nGrade: " + document.getElementById("grade").value + "\n\nPlease contact " + document.getElementById("fname").value + " at:\nEmail:" + document.getElementById("email").value + "\nPhone: " + document.getElementById("phone").value + "\nAddress: " + document.getElementById("streetAddress").value + ", " + document.getElementById("city").value + " " + document.getElementById("state").value + " " + document.getElementById("zip").value + ".";
+        var emailBody1 = "You have a new applicant:\nName: " + document.getElementById("fname").value + "\nStudent ID: " + document.getElementById("student-id").value +"\nGrade: " + document.getElementById("grade").value + "\n\nPlease contact " + document.getElementById("fname").value + " at:\nEmail: " + document.getElementById("email").value + "\nPhone: " + document.getElementById("phone").value + "\nAddress: " + document.getElementById("streetAddress").value + ", " + document.getElementById("city").value + " " + document.getElementById("state").value + " " + document.getElementById("zip").value + ".";
         var emailBody2 = "\n\nMore Information:\nHobbies: " + document.getElementById("interests-hobbies").value + "\nGoals: " + document.getElementById("aspirations").value;
         var emailBody = emailBody1 + emailBody2;
 
@@ -288,7 +288,7 @@
             email_receiver: "timlindevelopment@gmail.com", // whatever the dummy email we're using is.
             subject: "You have a new Applicant:" + document.getElementById("fname").value,
             body: emailBody, 
-            filename: document.getElementById("resume").value 
+            filename: "resume.pdf"
         };
 
         try {
