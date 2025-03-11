@@ -178,16 +178,25 @@ function openJobDetails(jobId) {
 }
 
 // Function to render approved job postings in the page
-function renderPostingsPage(tag,first,last) {
+function renderPostingsPage(tag,first,last,jobtype) {
     const postings = getPostings();
     const postingsList = document.querySelector('.jobs-container');  // Change here to use the class as it is in your HTML
     postingsList.innerHTML = ''; // Clear current list
-    var tagApproved
-    if (tag == "none") {
-        tagApproved = postings
+    
+    var typeApproved
+    if (jobtype == "none") {
+        typeApproved = postings
     }
     else {
-        tagApproved = postings.filter(posting => posting.cteTag === tag)
+        typeApproved = postings.filter(posting => posting.employmentType === jobtype)
+    }
+    
+    var tagApproved
+    if (tag == "none") {
+        tagApproved = typeApproved
+    }
+    else {
+        tagApproved = typeApproved.filter(posting => posting.cteTag === tag)
     }
 
     const firstApprovedPostings = tagApproved.filter(post => post.jobPay >= first);
@@ -275,10 +284,8 @@ async function sendEmail() {
         email_receiver: "timlindevelopment@gmail.com", // whatever the dummy email we're using is.
         subject: "You have a new Applicant:" + document.getElementById("fname").value,
         body: emailBody, 
-        filename: "test.pdf" 
+        filename: document.getElementById("resume").value 
     };
-
-    console.log(emailData.filename);
 
     try {
         const response = await fetch('http://127.0.0.1:5000/send-email', {
