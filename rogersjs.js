@@ -275,8 +275,10 @@ async function sendEmail() {
         email_receiver: "timlindevelopment@gmail.com", // whatever the dummy email we're using is.
         subject: "You have a new Applicant:" + document.getElementById("fname").value,
         body: emailBody, 
-        filename: document.getElementById("resume").value 
+        filename: "test.pdf" 
     };
+
+    console.log(emailData.filename);
 
     try {
         const response = await fetch('http://127.0.0.1:5000/send-email', {
